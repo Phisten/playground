@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@web-nx/astro-lib": ["libs/astro-lib/src/index.js"],
       "@web-nx/ui": ["libs/ui/src/index.ts"]
     }
   },
