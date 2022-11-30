@@ -24,6 +24,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "nextjs:build",
+        "port": 4000,
         "dev": true
       },
       "configurations": {

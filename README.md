@@ -23,3 +23,4 @@
 - storybook
 - axios
 - graphql
+- dayjs
