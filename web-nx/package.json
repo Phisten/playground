@@ -18,6 +18,7 @@
     "axios": "^1.2.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.11.6",
+    "generate-next-links": "^3.1.0",
     "graphql": "^16.6.0",
     "gsap": "^3.11.3",
     "lodash": "^4.17.21",
