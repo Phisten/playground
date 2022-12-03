@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Fragment } from 'react';
 import useSWR from 'swr';
 
@@ -30,15 +31,17 @@ export function MockImages(props: MockImagesProps) {
         {data?.map((image) => {
           return (
             <Fragment key={`${image.id}`}>
-              <div className="">
-                <Image
-                  src={image.download_url}
-                  unoptimized
-                  alt=""
-                  width={400}
-                  height={200}
-                />
-              </div>
+              <Link href={image.url}>
+                <div className="">
+                  <Image
+                    src={image.download_url}
+                    unoptimized
+                    alt=""
+                    width={400}
+                    height={200}
+                  />
+                </div>
+              </Link>
             </Fragment>
           );
         })}
