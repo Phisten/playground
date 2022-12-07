@@ -1,16 +1,6 @@
+import { Block } from '@web-nx/ui';
 import Link from 'next/link';
-import { PropsWithChildren } from 'react';
 import { NextPath } from '../utils/path';
-
-const Block = (props: PropsWithChildren<DivProps & { title: string }>) => {
-  const { title, children, ...other } = props;
-  return (
-    <div {...other}>
-      {title ? <p>{title}</p> : null}
-      {children}
-    </div>
-  );
-};
 
 export function Index() {
   return (
