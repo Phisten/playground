@@ -1,6 +1,6 @@
 export enum GenerateNextPath {
   MOCK_IMAGES = "/mock-images",
-  NANOSTORE = "/nanostore",
+  NANOSTORES = "/nanostores",
   NXDEFAULT = "/NxDefault",
   ROOT = "/",
 }

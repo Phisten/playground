@@ -26,6 +26,9 @@ export function Index() {
             <Link href={NextPath.MOCK_IMAGES}>
               <p>mock-images Page</p>
             </Link>
+            <Link href={NextPath.NANOSTORES}>
+              <p>NanoStores React</p>
+            </Link>
           </Block>
           <Block title="2313">123133</Block>
         </div>
