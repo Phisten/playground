@@ -1,6 +1,6 @@
 import { atom } from 'nanostores';
 import { useStore } from '@nanostores/react';
-import { Fragment, PropsWithChildren, ReactNode } from 'react';
+import { Fragment, PropsWithChildren, ReactNode, useState } from 'react';
 import { Block } from '@web-nx/ui';
 import BaseField from 'libs/ui/src/lib/BaseField';
 
@@ -16,9 +16,14 @@ const users = atom<User[]>([
 const addUser = (newUser: User) => {
   return users.set([...users.get(), newUser]);
 };
+type FormData = {
+  userId?: string;
+};
 
 export const Page = () => {
   const testData = useStore(users);
+
+  const [data, setData] = useState<FormData>({});
 
   return (
     <div className="grid my-20 mx-auto text-center gap-10 max-w-[400px]">
