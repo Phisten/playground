@@ -1,7 +1,8 @@
 import { atom } from 'nanostores';
 import { useStore } from '@nanostores/react';
-import { Fragment } from 'react';
+import { Fragment, PropsWithChildren, ReactNode } from 'react';
 import { Block } from '@web-nx/ui';
+import BaseField from 'libs/ui/src/lib/BaseField';
 
 type User = {
   id: string;
@@ -25,8 +26,25 @@ export const Page = () => {
         className="grid gap-4 border rounded-md p-2"
         title={'NanoStore Demo'}
       >
-        <label>new user name</label>
-        <input className="px-4 py-2"></input>
+        <form
+          className="grid"
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log('submit');
+          }}
+        >
+          <BaseField label={'new user name'}>
+            <input className="px-4 py-2"></input>
+          </BaseField>
+          <button
+            type="button"
+            onClick={() => {
+              console.log('first');
+            }}
+          >
+            btn
+          </button>
+        </form>
       </Block>
 
       <Block
