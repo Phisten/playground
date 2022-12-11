@@ -1,15 +1,8 @@
 import { atom } from 'nanostores';
 import { useStore } from '@nanostores/react';
-import {
-  FormEventHandler,
-  Fragment,
-  PropsWithChildren,
-  ReactNode,
-  useState,
-} from 'react';
+import { FormEventHandler, Fragment } from 'react';
 import { Block } from '@web-nx/ui';
 import BaseField from 'libs/ui/src/lib/BaseField';
-// import { randomUUID } from 'crypto';
 
 type User = {
   id: string;
@@ -22,9 +15,6 @@ const users = atom<User[]>([
 
 const addUser = (newUser: User) => {
   return users.set([...users.get(), newUser]);
-};
-type FormData = {
-  userId?: string;
 };
 
 export const Page = () => {
