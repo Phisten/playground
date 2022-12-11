@@ -1,8 +1,15 @@
 import { atom } from 'nanostores';
 import { useStore } from '@nanostores/react';
-import { Fragment, PropsWithChildren, ReactNode, useState } from 'react';
+import {
+  FormEventHandler,
+  Fragment,
+  PropsWithChildren,
+  ReactNode,
+  useState,
+} from 'react';
 import { Block } from '@web-nx/ui';
 import BaseField from 'libs/ui/src/lib/BaseField';
+// import { randomUUID } from 'crypto';
 
 type User = {
   id: string;
@@ -23,7 +30,20 @@ type FormData = {
 export const Page = () => {
   const testData = useStore(users);
 
-  const [data, setData] = useState<FormData>({});
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    const formData = new FormData(event.currentTarget);
+    event.preventDefault();
+
+    console.log({ formData });
+    formData.forEach((v: FormDataEntryValue, key, parent) => {
+      console.log({ v, key, parent });
+    });
+
+    addUser({
+      id: global.crypto.randomUUID().toString(),
+      name: formData.get('userName').toString() ?? 'unknownUser',
+    });
+  };
 
   return (
     <div className="grid my-20 mx-auto text-center gap-10 max-w-[400px]">
@@ -31,18 +51,16 @@ export const Page = () => {
         className="grid gap-4 border rounded-md p-2"
         title={'NanoStore Demo'}
       >
-        <form
-          className="grid"
-          onSubmit={(e) => {
-            e.preventDefault();
-            console.log('submit');
-          }}
-        >
+        <form className="grid" onSubmit={handleSubmit}>
           <BaseField label={'new user name'}>
-            <input className="px-4 py-2"></input>
+            <input
+              className="px-4 py-2"
+              name="userName"
+              placeholder="please input user name"
+            ></input>
           </BaseField>
           <button
-            type="button"
+            type="submit"
             onClick={() => {
               console.log('first');
             }}
