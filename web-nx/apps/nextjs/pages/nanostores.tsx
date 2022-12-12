@@ -1,8 +1,7 @@
 import { atom } from 'nanostores';
 import { useStore } from '@nanostores/react';
 import { FormEventHandler, Fragment } from 'react';
-import { Block } from '@web-nx/ui';
-import BaseField from 'libs/ui/src/lib/BaseField';
+import { Block, BaseField } from '@web-nx/ui';
 
 type User = {
   id: string;
