@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,12 +28,16 @@ export function MockImages(props: MockImagesProps) {
   return (
     <div>
       <h1 className="text-2xl">Welcome to MockImages!</h1>
-      <div className="grid grid-cols-3 mx-auto gap-4 max-w-[1232px]">
+      <Box
+        columnGap={2}
+        rowGap={2}
+        className="grid grid-cols-3 mx-auto my-8 max-w-[1232px]"
+      >
         {data?.map((image) => {
           return (
             <Fragment key={`${image.id}`}>
               <Link href={image.url}>
-                <div className="">
+                <Box>
                   <Image
                     src={image.download_url}
                     unoptimized
@@ -40,12 +45,12 @@ export function MockImages(props: MockImagesProps) {
                     width={400}
                     height={200}
                   />
-                </div>
+                </Box>
               </Link>
             </Fragment>
           );
         })}
-      </div>
+      </Box>
     </div>
   );
 }
