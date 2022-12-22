@@ -1,9 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import './styles.scss';
-import LogRocket from 'logrocket';
 
-LogRocket.init('vcbyma/logrocket');
 // LogRocket.identify('THE_USER_ID_IN_YOUR_APP', {
 //   name: 'James Morrison',
 //   email: 'jamesmorrison@example.com',
