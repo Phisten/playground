@@ -10,5 +10,20 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false
   },
+  "tailwindCSS.experimental.configFile": "web-nx/apps/nextjs/next.config.js",
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "Class \\=([^;]*);",
+      "'([^']*)'"
+    ],
+    [
+      "Class \\=([^;]*);",
+      "\"([^\"]*)\""
+    ],
+    [
+      "Class \\=([^;]*);",
+      "\\`([^\\`]*)\\`"
+    ]
+  ],
   "scss.lint.unknownAtRules": "ignore",
 }
