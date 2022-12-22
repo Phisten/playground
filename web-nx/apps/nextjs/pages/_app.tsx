@@ -2,11 +2,6 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import './styles.scss';
 
-// LogRocket.identify('THE_USER_ID_IN_YOUR_APP', {
-//   name: 'James Morrison',
-//   email: 'jamesmorrison@example.com',
-// });
-
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>

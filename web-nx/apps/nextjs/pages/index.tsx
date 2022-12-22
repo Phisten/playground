@@ -19,6 +19,9 @@ export function Index() {
             <Link href={NextPath.NANOSTORES}>
               <p>NanoStores React</p>
             </Link>
+            <Link href={NextPath.STYLE}>
+              <p>Styles</p>
+            </Link>
           </Block>
           <Block title="2313">123133</Block>
         </div>
