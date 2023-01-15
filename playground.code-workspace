@@ -1,14 +1,14 @@
 {
-  "folders": [
-	{
-		"path": "."
-	},
-	{
-		"path": "codefamer/cshape"
-	},
-	{
-		"path": "web-nx"
-	}
-],
-  "settings": {}
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "web-nx"
+		},
+		{
+			"path": "csharp"
+		}
+	],
+	"settings": {}
 }
