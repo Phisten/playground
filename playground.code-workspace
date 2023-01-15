@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "codefamer/cshape"
+	},
+	{
+		"path": "web-nx"
+	}
+],
+  "settings": {}
+}
