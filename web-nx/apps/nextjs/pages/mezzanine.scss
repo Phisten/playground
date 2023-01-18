@@ -1,0 +1,9 @@
+@use '~@mezzanine-ui/system' as mzn-system;
+@use '~@mezzanine-ui/core' as mzn-core;
+
+:root {
+  @include mzn-system.common-variables();
+  @include mzn-system.palette();
+}
+
+@include mzn-core.styles();

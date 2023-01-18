@@ -3,6 +3,15 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withNx } = require('@nrwl/next/plugins/with-nx');
 
+const withTM = require('next-transpile-modules')([
+  '@mezzanine-ui/core',
+  '@mezzanine-ui/system',
+  '@mezzanine-ui/react',
+  '@mezzanine-ui/icons',
+  '@mezzanine-ui/react-hook-form',
+  '@mezzanine-ui/react-hook-form-core',
+]);
+
 /**
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
  **/
@@ -28,6 +37,10 @@ const nextConfig = {
       },
     ],
   },
+
+  // webpack: (webpackConfig, options) => {
+
+  // }
 };
 
-module.exports = withNx(nextConfig);
+module.exports = withNx(withTM(nextConfig));

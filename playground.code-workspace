@@ -10,5 +10,9 @@
 			"path": "csharp"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cSpell.words": [
+			"clsx"
+		]
+	}
 }

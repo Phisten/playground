@@ -10,15 +10,30 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@@nextjs-utils": ["libs/nextjs-utils/src/index.ts"],
-      "@web-nx/astro-lib": ["libs/astro-lib/src/index.js"],
-      "@web-nx/ui": ["libs/ui/src/index.ts"]
+      // "@web-nx/nextjs/*": [
+      //   "apps/nextjs/*"
+      // ],
+      "@@nextjs-utils": [
+        "libs/nextjs-utils/src/index.ts"
+      ],
+      "@web-nx/astro-lib": [
+        "libs/astro-lib/src/index.js"
+      ],
+      "@web-nx/ui": [
+        "libs/ui/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

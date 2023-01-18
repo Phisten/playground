@@ -1,5 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+// import '@web-nx/nextjs/styles/styles.scss';
+// import '@@styles/styles.scss';
 import './styles.scss';
 
 function CustomApp({ Component, pageProps }: AppProps) {

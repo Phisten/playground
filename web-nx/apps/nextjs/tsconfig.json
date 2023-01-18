@@ -14,7 +14,12 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    // "paths": {
+    //   "@@styles/*": [
+    //     "styles/*"
+    //   ],
+    // }
   },
   "include": [
     "**/*.ts",
