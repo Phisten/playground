@@ -41,7 +41,16 @@ export const Page = () => {
 
   return (
     <>
-      <p>red row</p>
+      <p>mznTableRow highlight</p>
+      <a
+        href={
+          'https://codesandbox.io/s/mzn-table-row-highlight-j76m42?file=/src/App.js'
+        }
+        target={'_blank'}
+        rel="noreferrer"
+      >
+        <p>codeSandbox</p>
+      </a>
       <div className={clsx('w-screen h-screen', styles['wrapper'])}>
         {isClient && <Table dataSource={dataList} columns={columns} />}
       </div>
