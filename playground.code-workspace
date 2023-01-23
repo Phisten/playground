@@ -10,13 +10,14 @@
 			"path": "csharp"
 		},
 		{
-			"path": "puppeteer"
+			"path": "pttr"
 		}
 	],
 	"settings": {
 		"cSpell.words": [
 			"clsx"
 		],
-		"deno.enable": true
+		"deno.enable": false,
+		"editor.formatOnSave": true
 	}
 }
