@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "csharp"
+		},
+		{
+			"path": "puppeteer"
 		}
 	],
 	"settings": {
