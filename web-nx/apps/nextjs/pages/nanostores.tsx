@@ -2,6 +2,7 @@ import { atom } from 'nanostores';
 import { useStore } from '@nanostores/react';
 import { FormEventHandler, Fragment } from 'react';
 import { Block, BaseField } from '@web-nx/ui';
+import { Button } from '@mui/material';
 
 type User = {
   id: string;
@@ -65,8 +66,12 @@ export const Page = () => {
       >
         {testData.map((v) => (
           <Fragment key={v.id}>
-            <Block className="text-sm" title={v.id}>
-              <p className="text-base">{v.name}</p>
+            <Block className="text-sm shadow-md" title={v.id}>
+              <div className="grid items-center grid-cols-[1fr_100px_100px]">
+                <p className="text-base">{v.name}</p>
+                <Button>edit</Button>
+                <Button>remove</Button>
+              </div>
             </Block>
           </Fragment>
         ))}
