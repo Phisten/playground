@@ -1,7 +1,7 @@
 import { atom } from 'nanostores';
 import { useStore } from '@nanostores/react';
 import { FormEventHandler, Fragment } from 'react';
-import { Block, BaseField } from '@web-nx/ui';
+import { Block, BaseField, BlockConfigProvider } from '@web-nx/ui';
 import { Button } from '@mui/material';
 
 type User = {
@@ -17,7 +17,7 @@ const addUser = (newUser: User) => {
   return users.set([...users.get(), newUser]);
 };
 
-export const Page = () => {
+const PageContent = () => {
   const testData = useStore(users);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
@@ -66,7 +66,7 @@ export const Page = () => {
       >
         {testData.map((v) => (
           <Fragment key={v.id}>
-            <Block className="text-sm shadow-md" title={v.id}>
+            <Block title={v.id}>
               <div className="grid items-center grid-cols-[1fr_100px_100px]">
                 <p className="text-base">{v.name}</p>
                 <Button>edit</Button>
@@ -77,6 +77,18 @@ export const Page = () => {
         ))}
       </Block>
     </div>
+  );
+};
+
+const Page = () => {
+  return (
+    <BlockConfigProvider
+      config={{
+        default: { className: 'shadow-md text-sm' },
+      }}
+    >
+      <PageContent />
+    </BlockConfigProvider>
   );
 };
 

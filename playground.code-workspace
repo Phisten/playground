@@ -15,7 +15,8 @@
 	],
 	"settings": {
 		"cSpell.words": [
-			"clsx"
+			"clsx",
+			"nanostores"
 		],
 		"deno.enable": false,
 		"editor.formatOnSave": true
