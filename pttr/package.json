@@ -5,9 +5,11 @@
   "scripts": {
     "build": "tsc",
     "start": "yarn build && node dist/index.js",
+    "start:591": "yarn build && node dist/peek591.js",
     "build:watch": "npm run build -- --watch"
   },
   "dependencies": {
+    "dayjs": "^1.11.7",
     "puppeteer": "^19.5.2",
     "puppeteer-extra": "^3.3.4",
     "puppeteer-extra-plugin-stealth": "^2.11.1"
