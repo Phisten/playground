@@ -12,18 +12,18 @@ type DivProps = DetailedHTMLProps<
   HTMLDivElement
 >;
 
-const configNames = {
-  default: 'default',
-};
-type configNameType = keyof typeof configNames;
-type configType = {
-  [key in configNameType]: Partial<BlockProps>;
+enum BlockConfigNames {
+  default = 'default',
+}
+type BlockConfigName = keyof typeof BlockConfigNames | BlockConfigNames;
+type BlockConfig = {
+  [key in BlockConfigName]: Partial<BlockProps>;
 };
 
-const blockConfigContext = createContext<configType>({ default: {} });
+const blockConfigContext = createContext<BlockConfig>({ default: {} });
 
 export const useBlockConfig = (
-  configName = 'default' as configNameType,
+  configName = 'default' as BlockConfigName,
   omitConfigProps?: Array<keyof BlockProps>
 ) => {
   const cfg = useContext(blockConfigContext)?.[configName];
@@ -34,7 +34,7 @@ export const useBlockConfig = (
 
 export const BlockConfigProvider = (
   props: PropsWithChildren<{
-    config: configType;
+    config: BlockConfig;
   }>
 ) => {
   const { children, config } = props;
@@ -48,9 +48,11 @@ export const BlockConfigProvider = (
 /* eslint-disable-next-line */
 export type BlockProps = PropsWithChildren<
   DivProps & {
+    // spec
     title: string;
     titleClass?: string;
-    configName?: configNameType;
+    //
+    configName?: BlockConfigName;
     omitConfigProps?: Array<keyof BlockProps>;
   }
 >;
