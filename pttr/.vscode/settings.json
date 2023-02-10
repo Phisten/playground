@@ -8,4 +8,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false
   },
+  "cSpell.words": [
+    "domcontentloaded",
+    "networkidle"
+  ],
 }
