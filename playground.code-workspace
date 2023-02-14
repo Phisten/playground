@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "pttr"
+		},
+		{
+			"path": "vue3"
 		}
 	],
 	"settings": {
