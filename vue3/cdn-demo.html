@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>rendering</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <input type="text" v-model='demoModelVar1'>
+        <p>TEXT: {{ demoModelVar1 }}</p>
+      </div>
+      <render method="render" :args="component"></render>
+    </div>
+    <script type="module">
+      import { createApp ,ref } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.47/vue.esm-browser.min.js'
+      const app = createApp({
+        setup() {
+          // 使用 ref() 進行雙向綁定
+          const demoModelVar1 = ref('string var test')
+
+          // 需要回傳值，才能在 HTML 使用
+          return{
+            demoModelVar1,
+          }
+        },
+      });
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>
