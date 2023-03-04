@@ -14,6 +14,9 @@
 		},
 		{
 			"path": "vue3"
+		},
+		{
+			"path": "py"
 		}
 	],
 	"settings": {
