@@ -25,6 +25,7 @@
 	"settings": {
 		"cSpell.words": [
 			"clsx",
+			"gonic",
 			"nanostores"
 		],
 		"deno.enable": false,
