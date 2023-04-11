@@ -3,6 +3,9 @@ import { useStore } from '@nanostores/react';
 import { FormEventHandler, Fragment } from 'react';
 import { Block, BaseField, BlockConfigProvider } from '@web-nx/ui';
 import { Button } from '@mui/material';
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { Document, Page as PDFPage, View, Text } from 'react-pdf';
+import { useIsClient } from 'usehooks-ts';
 
 type User = {
   id: string;
@@ -17,24 +20,46 @@ const addUser = (newUser: User) => {
   return users.set([...users.get(), newUser]);
 };
 
-const PageContent = () => {
-  const testData = useStore(users);
+const MyPdfComponent = () => {
+  return (
+    <Document>
+      <PDFPage>
+        <View>
+          <Text>Test</Text>
+        </View>
+      </PDFPage>
+    </Document>
+  );
+};
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    const formData = new FormData(event.currentTarget);
-    event.preventDefault();
+const DataList = (props: { testData: User[] }) => {
+  const { testData } = props;
 
-    console.log({ formData });
-    formData.forEach((v: FormDataEntryValue, key, parent) => {
-      console.log({ v, key, parent });
-    });
+  return (
+    <Block
+      className="grid gap-4 border rounded-md p-2"
+      title={'-- User List --'}
+    >
+      {testData.map((v) => (
+        <Fragment key={v.id}>
+          <Block title={v.id}>
+            <div className="grid items-center grid-cols-[1fr_100px_100px]">
+              <p className="text-base">{v.name}</p>
+              <Button>edit</Button>
+              <Button>remove</Button>
+            </div>
+          </Block>
+        </Fragment>
+      ))}
+    </Block>
+  );
+};
 
-    addUser({
-      id: global.crypto.randomUUID().toString(),
-      name: formData.get('userName').toString() ?? 'unknownUser',
-    });
-  };
-
+const PageContent = (props: {
+  testData: User[];
+  handleSubmit: FormEventHandler<HTMLFormElement>;
+}) => {
+  const { testData, handleSubmit } = props;
   return (
     <div className="grid my-20 mx-auto text-center gap-10 max-w-[400px]">
       <Block
@@ -60,34 +85,51 @@ const PageContent = () => {
         </form>
       </Block>
 
-      <Block
-        className="grid gap-4 border rounded-md p-2"
-        title={'-- User List --'}
-      >
-        {testData.map((v) => (
-          <Fragment key={v.id}>
-            <Block title={v.id}>
-              <div className="grid items-center grid-cols-[1fr_100px_100px]">
-                <p className="text-base">{v.name}</p>
-                <Button>edit</Button>
-                <Button>remove</Button>
-              </div>
-            </Block>
-          </Fragment>
-        ))}
-      </Block>
+      <DataList testData={testData} />
     </div>
   );
 };
 
 const Page = () => {
+  const testData = useStore(users);
+  const isHydrated = useIsClient();
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    const formData = new FormData(event.currentTarget);
+    event.preventDefault();
+
+    console.log({ formData });
+    formData.forEach((v: FormDataEntryValue, key, parent) => {
+      console.log({ v, key, parent });
+    });
+
+    addUser({
+      id: global.crypto.randomUUID().toString(),
+      name: formData.get('userName').toString() ?? 'unknownUser',
+    });
+  };
+
   return (
     <BlockConfigProvider
       config={{
         default: { className: 'shadow-md text-sm' },
       }}
     >
-      <PageContent />
+      <PageContent testData={testData} handleSubmit={handleSubmit} />
+
+      {isHydrated ? (
+        <>
+          <PDFDownloadLink document={<MyPdfComponent />} fileName="example.pdf">
+            {({ blob, url, loading, error }) =>
+              loading ? 'Loading document...' : 'Download now!'
+            }
+          </PDFDownloadLink>
+
+          <PDFViewer>
+            <MyPdfComponent />
+          </PDFViewer>
+        </>
+      ) : null}
     </BlockConfigProvider>
   );
 };

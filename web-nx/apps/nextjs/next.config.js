@@ -10,6 +10,7 @@ const withTM = require('next-transpile-modules')([
   '@mezzanine-ui/icons',
   '@mezzanine-ui/react-hook-form',
   '@mezzanine-ui/react-hook-form-core',
+  '@nanostores/react',
 ]);
 
 /**
