@@ -26,7 +26,8 @@
 		"cSpell.words": [
 			"clsx",
 			"gonic",
-			"nanostores"
+			"nanostores",
+			"nextjs"
 		],
 		"deno.enable": false,
 		"editor.formatOnSave": true,
