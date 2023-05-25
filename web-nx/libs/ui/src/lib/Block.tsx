@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { omit } from 'ramda';
 import {
   DetailedHTMLProps,
   HTMLAttributes,
@@ -27,9 +28,10 @@ export const useBlockConfig = (
   omitConfigProps?: Array<keyof BlockProps>
 ) => {
   const cfg = useContext(blockConfigContext)?.[configName];
-  omitConfigProps?.forEach((p) => (cfg[p] = undefined));
-
-  return cfg;
+  const newCfg: Partial<BlockProps> = omitConfigProps
+    ? omit(omitConfigProps, cfg)
+    : cfg;
+  return newCfg;
 };
 
 export const BlockConfigProvider = (

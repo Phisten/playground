@@ -3,8 +3,6 @@ import { useStore } from '@nanostores/react';
 import { FormEventHandler, Fragment } from 'react';
 import { Block, BaseField, BlockConfigProvider } from '@web-nx/ui';
 import { Button } from '@mui/material';
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
-import { Document, Page as PDFPage, View, Text } from 'react-pdf';
 import { useIsClient } from 'usehooks-ts';
 
 type User = {
@@ -18,18 +16,6 @@ const users = atom<User[]>([
 
 const addUser = (newUser: User) => {
   return users.set([...users.get(), newUser]);
-};
-
-const MyPdfComponent = () => {
-  return (
-    <Document>
-      <PDFPage>
-        <View>
-          <Text>Test</Text>
-        </View>
-      </PDFPage>
-    </Document>
-  );
 };
 
 const DataList = (props: { testData: User[] }) => {
@@ -116,20 +102,6 @@ const Page = () => {
       }}
     >
       <PageContent testData={testData} handleSubmit={handleSubmit} />
-
-      {isHydrated ? (
-        <>
-          <PDFDownloadLink document={<MyPdfComponent />} fileName="example.pdf">
-            {({ blob, url, loading, error }) =>
-              loading ? 'Loading document...' : 'Download now!'
-            }
-          </PDFDownloadLink>
-
-          <PDFViewer>
-            <MyPdfComponent />
-          </PDFViewer>
-        </>
-      ) : null}
     </BlockConfigProvider>
   );
 };
