@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Solution solution = new Solution();
+Solution18 solution = new Solution18();
 
-solution.FourSum(new int[] { 1, 0, -1, 0, -2, 2 }, 0);
+solution.FourSum(new int[] { 2, 2, 2, 2, 2 }, 8);
