@@ -45,6 +45,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.40.0",
     "react-pdf": "^6.2.2",
+    "react-swipeable": "^7.0.1",
     "regenerator-runtime": "0.13.7",
     "rxdb": "^13.12.0",
     "rxjs": "^7.5.7",
