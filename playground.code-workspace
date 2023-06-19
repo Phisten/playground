@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "golang"
+		},
+		{
+			"path": "strapi"
 		}
 	],
 	"settings": {
