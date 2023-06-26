@@ -15,6 +15,8 @@ for filename in os.listdir(directory):
     if os.path.isfile(f):
         print(f)
         img = Image.open(f)
+
+        # 保留SD parameters
         metadata = PngInfo()
 
         new_img = img.transpose(Image.FLIP_LEFT_RIGHT)
