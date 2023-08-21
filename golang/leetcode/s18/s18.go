@@ -12,52 +12,66 @@ func main() {
 	fmt.Println("4sum end")
 }
 
+func threeSum(nums []int, start int, target int) [][]int {
+	numsLen := len(nums)
+
+	ans := [][]int{}
+	appendLog := make(map[[3]int]bool)
+
+	for i := start; i < numsLen; i++ {
+		index := i
+		value := nums[index]
+
+		left := index + 1
+		right := numsLen - 1
+
+		// 數字不足 或 首數已過大,後續無解
+		if index > numsLen-3 || value+nums[left]+nums[left+1] > target {
+			break
+		}
+
+		// 首數過小
+		if value+nums[numsLen-1]+nums[numsLen-2] < target {
+			continue
+		}
+
+		for index < left && left < right {
+			sum := value + nums[left] + nums[right]
+			if sum > target {
+				right -= 1
+			} else if sum < target {
+				left += 1
+			} else {
+				newAns := [3]int{value, nums[left], nums[right]}
+				if !appendLog[newAns] {
+					ans = append(ans, []int{value, nums[left], nums[right]})
+					appendLog[newAns] = true
+				}
+				left += 1
+				right -= 1
+			}
+		}
+
+	}
+	return ans
+}
+
 func fourSum(nums []int, target int) [][]int {
 	sort.Ints(nums)
 	numsLen := len(nums)
 
-	twoSum := []int{}
-	twoSumMap := make(map[int]([][2]int))
-
-	for i := 0; i < numsLen-1; i++ {
-		for j := i + 1; j < numsLen; j++ {
-			curSum := nums[i] + nums[j]
-			twoSum = append(twoSum, curSum)
-			twoSumMap[curSum] = append(twoSumMap[curSum], [2]int{nums[i], nums[j]})
-		}
-	}
-
 	ans := [][]int{}
-	ansLogMap := make(map[[4]int]bool)
+	appendLog := make(map[[4]int]bool)
 
-	twoSumLen := len(twoSum)
-
-	for i := 0; i < twoSumLen-1; i++ {
-		for j := i + 1; j < twoSumLen; j++ {
-			if twoSum[i]+twoSum[j] == target {
-				for _, left := range twoSumMap[twoSum[i]] {
-					for _, right := range twoSumMap[twoSum[j]] {
-						orderCurAns := []int{left[0], left[1], right[0], right[1]}
-						sort.Ints(orderCurAns)
-						orderCurAns4 := [4]int{orderCurAns[0], orderCurAns[1], orderCurAns[2], orderCurAns[3]}
-
-						if !ansLogMap[orderCurAns4] {
-							ansLogMap[orderCurAns4] = true
-							ans = append(ans, orderCurAns)
-						}
-					}
-				}
+	for i := 0; i < numsLen; i++ {
+		for _, item := range threeSum(nums, i+1, target-nums[i]) {
+			log := [4]int{nums[i], item[0], item[1], item[2]}
+			if !appendLog[log] {
+				appendLog[log] = true
+				ans = append(ans, []int{nums[i], item[0], item[1], item[2]})
 			}
-			if j < numsLen-1 && twoSum[j] == twoSum[j+1] {
-				j++
-			}
-		}
-		if twoSum[i] == twoSum[i+1] {
-			i++
 		}
 	}
-
-	fmt.Println(twoSum)
 
 	return ans
 }
