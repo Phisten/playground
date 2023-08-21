@@ -3,13 +3,14 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	fmt.Println(repeatedSubstringPattern("aabaaba"))
-	fmt.Println(repeatedSubstringPattern("aba"))
-	fmt.Println(repeatedSubstringPattern("aaa"))
-	fmt.Println(repeatedSubstringPattern("abcabcabcabc"))
+	fmt.Println(repeatedSubstringPattern_logicRule("aabaaba"))
+	fmt.Println(repeatedSubstringPattern_logicRule("aba"))
+	fmt.Println(repeatedSubstringPattern_logicRule("aaa"))
+	fmt.Println(repeatedSubstringPattern_logicRule("abcabcabcabc"))
 }
 
 func repeatedSubstringPattern(s string) bool {
@@ -27,4 +28,10 @@ func repeatedSubstringPattern(s string) bool {
 	}
 
 	return false
+}
+
+func repeatedSubstringPattern_logicRule(s string) bool {
+	ss := s + s
+
+	return strings.Contains(ss[1:len(ss)-1], s)
 }
