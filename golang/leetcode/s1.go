@@ -5,11 +5,7 @@ import (
 )
 
 func main() {
-	nums := []int{2, 7, 11, 15}
-	target := 9
-
-	result := twoSum(nums, target)
-	fmt.Println(result)
+	fmt.Println(twoSum([]int{2, 7, 11, 15}, 9))
 }
 
 func twoSum(nums []int, target int) []int {
