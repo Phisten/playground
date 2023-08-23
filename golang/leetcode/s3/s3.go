@@ -44,3 +44,44 @@ func lengthOfLongestSubstring_701ms(s string) int {
 	}
 	return maxLen
 }
+
+func lengthOfLongestSubstring(s string) int {
+	// 雙指針比對
+	passMaxLen := 0
+	l := 0
+	r := 0
+
+	for r < len(s) {
+		r = l + passMaxLen
+		if r >= len(s) {
+			break
+		}
+
+		skip := false
+		// 設定已出現字元的hashtable 值為 index
+		logMap := make(map[string]int)
+		for i := l; i <= r; i++ {
+			lastIdx, exists := logMap[s[i:i+1]]
+			if !exists {
+				logMap[s[i:i+1]] = i
+			} else {
+				// 發生重複則拋棄前段
+				l = lastIdx + 1
+				skip = true
+				break
+			}
+		}
+		if skip {
+			continue
+		}
+
+		//嘗試擴張r
+		r++
+		passMaxLen++
+	}
+
+	if len(s) == 0 {
+		return 0
+	}
+	return passMaxLen
+}
