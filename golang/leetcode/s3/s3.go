@@ -45,7 +45,7 @@ func lengthOfLongestSubstring_701ms(s string) int {
 	return maxLen
 }
 
-func lengthOfLongestSubstring(s string) int {
+func lengthOfLongestSubstring_250ms(s string) int {
 	// 雙指針比對
 	passMaxLen := 0
 	l := 0
@@ -59,17 +59,16 @@ func lengthOfLongestSubstring(s string) int {
 
 		skip := false
 		// 設定已出現字元的hashtable 值為 index
-		logMap := make(map[string]int)
+		logMap := make(map[byte]int)
 		for i := l; i <= r; i++ {
-			lastIdx, exists := logMap[s[i:i+1]]
-			if !exists {
-				logMap[s[i:i+1]] = i
-			} else {
+			if lastIdx, exists := logMap[s[i]]; exists {
 				// 發生重複則拋棄前段
 				l = lastIdx + 1
 				skip = true
 				break
 			}
+
+			logMap[s[i]] = i
 		}
 		if skip {
 			continue
@@ -84,4 +83,63 @@ func lengthOfLongestSubstring(s string) int {
 		return 0
 	}
 	return passMaxLen
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+func lengthOfLongestSubstring(s string) int {
+	// O(n)單次巡覽 紀錄每個字元上次出現位置 碰到重複時計算距離-1為最大長度
+
+	// abcca
+	// 1
+	//  2
+	//   3
+	//    1
+	//     2
+
+	// abcba
+	// 1
+	//  2
+	//   3
+	//    2
+	//     3
+
+	// pwwkew
+	// 1
+	//  2
+	//   1
+	//    2
+	//     3
+	//      1
+
+	// 新字元時streamSize+1
+	// 舊字元時 距離與streamSize+1取較短的
+
+	streamSize := 0
+	bestLen := 0
+
+	// 設定已出現字元的hashtable 值為 index
+	logMap := make(map[byte]int)
+
+	for i := 0; i < len(s); i++ {
+		if lastIdx, exists := logMap[s[i]]; exists {
+			streamSize = min(i-lastIdx, streamSize+1)
+		} else {
+			streamSize++
+		}
+		bestLen = max(bestLen, streamSize)
+		logMap[s[i]] = i
+	}
+
+	return bestLen
 }
