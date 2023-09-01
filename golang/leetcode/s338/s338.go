@@ -29,18 +29,17 @@ func main() {
 16  10000   1 2^4
 */
 func countBits(n int) []int {
-	ans := []int{0}
+	ans := make([]int, n+1)
 
 	binaryStep := 1
 	for i := 1; i <= n; i++ {
 		if i == binaryStep*2 {
 			binaryStep = i
-			ans = append(ans, 1)
+			ans[i] = 1
 		} else {
-			ans = append(ans, ans[i-binaryStep]+1)
+			ans[i] = ans[i-binaryStep] + 1
 		}
 	}
 
 	return ans
-
 }
