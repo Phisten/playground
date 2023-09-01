@@ -33,11 +33,12 @@ func countBits(n int) []int {
 
 	binaryStep := 1
 	for i := 1; i <= n; i++ {
-		if i == binaryStep*2 {
+		cacheIdx := i - binaryStep
+		if cacheIdx == binaryStep {
 			binaryStep = i
 			ans[i] = 1
 		} else {
-			ans[i] = ans[i-binaryStep] + 1
+			ans[i] = ans[cacheIdx] + 1
 		}
 	}
 
