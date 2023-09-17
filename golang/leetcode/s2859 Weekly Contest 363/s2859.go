@@ -25,23 +25,3 @@ func sumIndicesWithKSetBits(nums []int, k int) int {
 	}
 	return sum1
 }
-
-// func sumIndicesWithKSetBits_(nums []int, k int) int {
-
-// 	kBitArr := []int{0, 1}
-
-// 	kBitBase := 1
-// 	iBit := 0
-
-// 	sum1 := 0
-
-// 	for i := 1; i < len(nums); i++ {
-// 		if i == kBitBase*2 {
-// 			kBitBase *= 2
-// 			iBit = 1
-// 		} else {
-// 			iBit = kBitArr[kBitBase+i]
-// 		}
-// 	}
-
-// }
