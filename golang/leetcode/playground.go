@@ -5,7 +5,6 @@ import (
 )
 
 func main() {
-	fmt.Println(someFunc([]int{2, 7, 11, 15}, 9))
 	fmt.Printf("%v -> 0 \n", someFunc([]int{2, 7, 11, 15}, 9))
 }
 
