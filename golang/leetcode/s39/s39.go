@@ -14,6 +14,7 @@ func main() {
 // - 輸出不需排序,candidates可以先排序
 // - dp儲存target扣到剩多少時有哪些解法
 // - 處理到重複解
+// - 處理append需要深複製的問題
 func combinationSum(candidates []int, target int) [][]int {
 	sort.Ints(candidates)
 	n := len(candidates)
