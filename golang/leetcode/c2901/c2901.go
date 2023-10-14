@@ -8,12 +8,70 @@ func main() {
 	fmt.Printf("%v -> [dc,dd,da] \n", getWordsInLongestSubsequence(9, []string{"bad", "dc", "bc", "ccd", "dd", "da", "cad", "dba", "aba"}, []int{9, 7, 1, 2, 6, 8, 3, 7, 2}))
 }
 
+// 改成dp由前往後掃描可接續數量
+func getWordsInLongestSubsequence(n int, words []string, groups []int) []string {
+	ans := []string{}
+
+	// check hamming dist and groups , if hamming[a][b]==1, 可拼接
+	hamming := make([][]int, n)
+	for i := 0; i < n; i++ {
+		hamming[i] = make([]int, n)
+		for j := i + 1; j < n; j++ {
+			dist := 0
+			if len(words[i]) == len(words[j]) && groups[i] != groups[j] {
+				for c := range words[i] {
+					if words[i][c] != words[j][c] {
+						dist++
+					}
+				}
+			}
+			hamming[i][j] = dist
+		}
+		// fmt.Printf("%v\t %v\n", words[i], hamming[i])
+	}
+
+	// 累進串連數
+	dp := make([]int, n)
+	// 最長串連序列
+	dpList := make([][]string, n)
+	for i := range dp {
+		dp[i] = 1
+		dpList[i] = []string{words[i]}
+	}
+
+	for i := 0; i < n; i++ {
+		curList := make([]string, len(dpList[i]))
+		copy(curList, dpList[i])
+
+		for j := i + 1; j < n; j++ {
+			if hamming[i][j] == 1 {
+				if dp[j] < dp[i]+1 {
+					dp[j] = dp[i] + 1
+					dpList[j] = curList
+					dpList[j] = append(dpList[j], words[j])
+				}
+			}
+		}
+	}
+
+	for _, v := range dpList {
+		if len(v) > len(ans) {
+			ans = v
+		}
+	}
+
+	return ans
+}
+
+// ----------------
+
 // 要考量nums內的字串有多種長度
 // 掃描過程把不同長度的分開算
 // 字串還要進行比對 長度必須一樣且只能差一個字
 // c2第一個元素開始抓一定是對的 這題必須考量字串間距離
 // 組合會跳索引 總長度短 可以用遞迴解
-func getWordsInLongestSubsequence(n int, words []string, groups []int) []string {
+// x 未完成解題
+func getWordsInLongestSubsequence_x(n int, words []string, groups []int) []string {
 
 	// ansByLen := [11][]string{}
 
@@ -90,7 +148,7 @@ func recursion(groupsByLenL []int, wordsByLenL []string, hammingByLenL [][]int, 
 	curN := len(groupsByLenL)
 	for start := startIdx; start < curN; start++ {
 		tempAnsByLen := []string{}
-		lastAppendIdx := -1
+		// lastAppendIdx := -1
 		for i := start; i < curN; i++ {
 			curAns := recursion(groupsByLenL, wordsByLenL, hammingByLenL, i)
 
