@@ -8,6 +8,7 @@ import (
 func main() {
 	fmt.Printf("%v -> [2,1,-1] \n", lastVisitedIntegers([]string{"1", "2", "prev", "prev", "prev"}))
 }
+
 func lastVisitedIntegers(words []string) []int {
 
 	ans := []int{}

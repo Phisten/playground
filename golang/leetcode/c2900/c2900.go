@@ -19,7 +19,6 @@ func getWordsInLongestSubsequence(n int, words []string, groups []int) []string 
 
 		if v != groups[i-1] {
 			ans = append(ans, words[i])
-
 		}
 	}
 
