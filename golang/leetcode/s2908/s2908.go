@@ -39,47 +39,6 @@ func minimumSum(nums []int) int {
 	return ans
 }
 
-// ht＋迴圈暴力解
-func minimumSum_xxx(nums []int) int {
-	ans := 2147483647
-	n := len(nums)
-	htL := make([][]int, n)
-	htR := make([][]int, n)
-
-	for i := 0; i < n-1; i++ {
-		htL[i] = make([]int, n)
-		htR[i] = make([]int, n)
-		for j := i + 1; j < n; j++ {
-			if nums[i] < nums[j] {
-				htL[i][j] = nums[i] + nums[j]
-			}
-			if nums[i] > nums[j] {
-				htR[i][j] = nums[i] + nums[j]
-			}
-		}
-	}
-
-	for i := 0; i < n-1; i++ {
-		for j := i + 1; j < n; j++ {
-			if htL[i][j] > 0 {
-				for k := j + 1; k < n; k++ {
-					if htR[j][k] > 0 {
-						cur := htL[i][j] + nums[k]
-						if cur < ans {
-							ans = cur
-						}
-					}
-				}
-			}
-		}
-	}
-
-	if ans == 2147483647 {
-		ans = -1
-	}
-	return ans
-}
-
 // 左右找最小數
 // 邏輯太複雜, 放棄
 func minimumSum_xx(nums []int) int {
