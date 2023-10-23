@@ -23,6 +23,9 @@
 		},
 		{
 			"path": "strapi"
+		},
+		{
+			"path": "t3"
 		}
 	],
 	"settings": {
