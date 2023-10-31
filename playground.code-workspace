@@ -34,7 +34,8 @@
 			"gonic",
 			"leetcode",
 			"nanostores",
-			"nextjs"
+			"nextjs",
+			"tailwindcss"
 		],
 		"deno.enable": false,
 		"editor.formatOnSave": true,
