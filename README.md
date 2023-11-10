@@ -2,25 +2,30 @@
 
 ## nx
 
-### Nextjs 13 TODO
+### Nextjs TODO
 
 ### Astro TODO
 
 <https://docs.astro.build/en/getting-started/>
 
-### packages
+### packages demo
 
 - nanostore
 - usehooks-ts
 - react-hook-form
 - rxjs
 - rxdb
-- mui
-- antd
 - lodash
 - tailwindcss
 - gsap : <https://greensock.com/react/>
-- storybook
 - axios
 - graphql
 - dayjs
+
+### ui
+
+- custom
+- storybook
+- mui
+- antd
+- mezzanine-ui
