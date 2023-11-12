@@ -2,9 +2,12 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
+	fmt.Printf("pow 3^2=%v  \n", math.Pow(3, 2))
+
 	// 指定長度
 	a := [2]int{1, 2}
 	b := a
