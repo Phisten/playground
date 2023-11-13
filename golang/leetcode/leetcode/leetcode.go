@@ -6,6 +6,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// 錯的
 func ArrayToTreeNode(arr []interface{}) *TreeNode {
 	if len(arr) == 0 {
 		return nil
