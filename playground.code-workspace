@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "t3"
+		},
+		{
+			"path": "rust"
 		}
 	],
 	"settings": {
