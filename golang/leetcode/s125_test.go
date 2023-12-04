@@ -5,8 +5,6 @@ import (
 	"testing"
 )
 
-var Pnt = fmt.Printf
-
 func Test_s125(t *testing.T) {
 	fmt.Printf("Test_s125\n")
 
