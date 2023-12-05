@@ -5,25 +5,18 @@ import { NestFactory } from '@nestjs/core';
 class AppController {
   @Get()
   getRootRoute() {
-
-    return 'hi ph!'
-
-
-
+    return 'hi ph!';
   }
 }
 
 @Module({
-  controllers: [AppController]
+  controllers: [AppController],
 })
-class AppModule {
-
-}
-
+class AppModule {}
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
-  await app.listen(3001)
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3001);
 }
 
-bootstrap()
+bootstrap();
