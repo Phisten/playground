@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 
 @Controller('messages')
 export class MessagesController {
@@ -11,8 +11,8 @@ export class MessagesController {
     console.log(content);
     return 'create: ' + content;
   }
-  @Get('/:id')
-  getMessage() {
-    return '1000';
+  @Get(':id')
+  getMessage(@Param('id') id: string) {
+    return 'id: ' + id;
   }
 }
