@@ -1,0 +1,18 @@
+@host = http://localhost:3500
+
+### signup
+POST {{host}}/auth/signup
+Content-Type: application/json
+
+{
+  "email": "ans@gmail.com",
+  "pwd": "real"
+}
+
+### signup error
+POST {{host}}/auth/signup
+Content-Type: application/json
+
+{
+  "email": "ansgmailcom"
+}
