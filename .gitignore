@@ -3,3 +3,4 @@
 Thumbs.db
 py/leetcode/__pycache__
 rust/target
+*.sqlite

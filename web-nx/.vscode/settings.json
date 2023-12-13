@@ -8,7 +8,7 @@
   "typescript.validate.enable": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": false
+    "source.fixAll.eslint": "never"
   },
   "tailwindCSS.experimental.configFile": "web-nx/apps/nextjs/next.config.js",
   "tailwindCSS.experimental.classRegex": [
