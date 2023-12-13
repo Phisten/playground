@@ -1,5 +1,13 @@
 @host = http://localhost:3500
 
+
+### get user
+GET {{host}}/auth/2
+### get user by email
+GET {{host}}/auth?email=ans@gmail.com
+### get user by email error
+GET {{host}}/auth?emai=123
+
 ### signup
 POST {{host}}/auth/signup
 Content-Type: application/json
