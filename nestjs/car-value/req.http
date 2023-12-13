@@ -1,0 +1,7 @@
+### signup
+POST http://localhost:3500/auth/signup
+
+{
+  "email": "ans@gmail.com",
+  "pwd": "real"
+}
