@@ -5,9 +5,16 @@ import { NutService } from './nut.service';
 export class NutController {
   constructor(private readonly nutService: NutService) {}
 
-  @Get()
-  demo() {
+  @Get('mouse')
+  demoMouse() {
+    console.log('demo mouse');
     this.nutService.demoMouseMove();
     return 'demo mouse move';
+  }
+
+  @Get()
+  demoSS() {
+    console.log('demoSS');
+    return this.nutService.demoSS();
   }
 }
