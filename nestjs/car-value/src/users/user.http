@@ -1,12 +1,18 @@
 @host = http://localhost:3500
 
 
+
 ### get user
 GET {{host}}/auth/2
+### get user
+GET {{host}}/auth/222
+
+
+### get users
 ### get user by email
 GET {{host}}/auth?email=ans@gmail.com
 ### get user by email error
-GET {{host}}/auth?emai=123
+GET {{host}}/auth?email=123
 
 ### signup
 POST {{host}}/auth/signup
@@ -14,9 +20,8 @@ Content-Type: application/json
 
 {
   "email": "ans@gmail.com",
-  "pwd": "real"
+  "pwd": "readddl"
 }
-
 ### signup error
 POST {{host}}/auth/signup
 Content-Type: application/json
@@ -24,3 +29,14 @@ Content-Type: application/json
 {
   "email": "ansgmailcom"
 }
+
+### update
+PATCH {{host}}/auth/2
+Content-Type: application/json
+
+{
+  "pwd": "readdd22222111122"
+}
+
+### remove
+DELETE  {{host}}/auth/6
