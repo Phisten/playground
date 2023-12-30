@@ -30,7 +30,6 @@ func Test_s53(t *testing.T) {
 }
 
 func maxSubArray(nums []int) int {
-	// largestArr := []int{nums[0]}
 	largestSum := nums[0]
 	lastLargestSum := nums[0]
 	l := len(nums)
