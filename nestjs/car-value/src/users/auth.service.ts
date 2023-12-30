@@ -45,9 +45,11 @@ export class AuthService {
     console.log('signin', { users: user });
 
     // hash password
-    const isMatch = await bcrypt.compare(password, user?.[0].pwd);
+    const isMatch = await bcrypt.compare(password, user.pwd);
+    if (!isMatch) {
+      throw new BadRequestException('password incorrect');
+    }
 
-    // return user
-    return isMatch;
+    return user;
   }
 }

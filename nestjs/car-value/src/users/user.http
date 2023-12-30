@@ -3,7 +3,7 @@
 
 
 ### get user
-GET {{host}}/auth/1
+GET {{host}}/auth/11
 ### get user
 GET {{host}}/auth/222
 
@@ -35,7 +35,7 @@ POST {{host}}/auth/signin
 Content-Type: application/json
 
 {
-  "email": "ans1222@gmail.com",
+  "email": "ans1@gmail.com",
   "pwd": "readddl"
 }
 
@@ -48,7 +48,7 @@ Content-Type: application/json
 }
 
 ### remove
-DELETE  {{host}}/auth/6
+DELETE  {{host}}/auth/10
 
 
 ### Set a color
