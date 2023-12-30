@@ -4,34 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "web-nx"
-		},
-		{
-			"path": "csharp"
-		},
-		{
-			"path": "pttr"
-		},
-		{
-			"path": "vue3"
-		},
-		{
-			"path": "py"
-		},
-		{
 			"path": "golang"
 		},
 		{
-			"path": "strapi"
-		},
-		{
-			"path": "t3"
-		},
-		{
-			"path": "rust"
-		},
-		{
-			"path": "nestjs"
+			"path": "web/nestjs"
 		}
 	],
 	"settings": {
