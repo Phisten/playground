@@ -49,3 +49,10 @@ Content-Type: application/json
 
 ### remove
 DELETE  {{host}}/auth/6
+
+
+### Set a color
+GET {{host}}/auth/colors/red111
+
+### get a color 
+GET {{host}}/auth/colors
