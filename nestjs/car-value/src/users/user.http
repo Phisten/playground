@@ -19,7 +19,7 @@ POST {{host}}/auth/signup
 Content-Type: application/json
 
 {
-  "email": "ans@gmail.com",
+  "email": "ans2@gmail.com",
   "pwd": "readddl"
 }
 ### signup error
@@ -28,6 +28,15 @@ Content-Type: application/json
 
 {
   "email": "ansgmailcom"
+}
+
+### signin
+POST {{host}}/auth/signin
+Content-Type: application/json
+
+{
+  "email": "ans1222@gmail.com",
+  "pwd": "readddl"
 }
 
 ### update
