@@ -39,6 +39,11 @@ export class UsersController {
     return !!user;
   }
 
+  @Post('signout')
+  signOut(@Session() session: any) {
+    session.userId = null;
+  }
+
   @Get('/colors/:color')
   setColor(@Param('color') color: string, @Session() session: any) {
     session.color = color;
