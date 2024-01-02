@@ -2,6 +2,13 @@
 
 
 
+### whoami
+GET {{host}}/auth/whoami
+
+### logout
+POST {{host}}/auth/signout
+
+
 ### get user
 GET {{host}}/auth/11
 ### get user
