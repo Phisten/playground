@@ -5,6 +5,14 @@
 ### whoami
 GET {{host}}/auth/whoami
 
+### signin
+POST {{host}}/auth/signin
+Content-Type: application/json
+
+{
+  "email": "ans1@gmail.com",
+  "pwd": "readddl"
+}
 ### logout
 POST {{host}}/auth/signout
 
@@ -37,14 +45,6 @@ Content-Type: application/json
   "email": "ansgmailcom"
 }
 
-### signin
-POST {{host}}/auth/signin
-Content-Type: application/json
-
-{
-  "email": "ans1@gmail.com",
-  "pwd": "readddl"
-}
 
 ### update
 PATCH {{host}}/auth/2
