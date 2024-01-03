@@ -1,15 +1,17 @@
 import { Test } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
+import { User } from './users.entity';
+import { CreateUserDTO } from './dtos/create-user.dto';
 
 describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(async () => {
     // create a fake copy of the user service
-    const fakeUsersService = {
-      createUser: (email: string, password: string) =>
-        Promise.resolve({ id: 1, email, password }),
+    const fakeUsersService: Partial<UsersService> = {
+      createUser: (user: CreateUserDTO) =>
+        Promise.resolve({ id: 1, email: user.email, pwd: user.pwd } as User),
       find: () => Promise.resolve([]),
     };
 
@@ -28,5 +30,14 @@ describe('AuthService', () => {
 
   it('can create an instance of auth service', async () => {
     expect(service).toBeDefined();
+  });
+
+  it('create a new user with a salted and hashed password', async () => {
+    const user = await service.signup('asdf@asd.com', 'asdddd');
+
+    expect(user.pwd).not.toEqual('asdddd');
+    const [salt, hash] = user.pwd.split('.');
+    expect(salt).toBeDefined();
+    expect(hash).toBeDefined();
   });
 });
