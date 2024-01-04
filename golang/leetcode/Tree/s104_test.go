@@ -2,7 +2,6 @@ package leetcode
 
 import (
 	"reflect"
-	leetcode "sample-app/leetcode/BST"
 	"testing"
 )
 
@@ -23,8 +22,6 @@ func Test_s104(t *testing.T) {
 		}
 	}
 }
-
-type TreeNode = leetcode.TreeNode
 
 /**
  * Definition for a binary tree node.
