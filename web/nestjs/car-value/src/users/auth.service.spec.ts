@@ -69,11 +69,8 @@ describe('AuthService', () => {
     );
   });
   it('throws if signin is called with an incorrect password', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        { id: '1', email: 'asd', pwd: 'hash' } as unknown as User,
-      ]);
-    await expect(service.signin('asd', 'asd')).rejects.toThrow(
+    await service.signup('asd2', 'asd1');
+    await expect(service.signin('asd2', 'asd')).rejects.toThrow(
       BadRequestException,
     );
   });
