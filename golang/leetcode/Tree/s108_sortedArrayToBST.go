@@ -19,5 +19,4 @@ func sortedArrayToBST(nums []int) *TreeNode {
 	}
 
 	return top
-
 }
