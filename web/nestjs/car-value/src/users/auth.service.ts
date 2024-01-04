@@ -21,7 +21,6 @@ export class AuthService {
     const salt = await bcrypt.genSalt();
     // hash password
     const hash = await bcrypt.hash(password, salt);
-    console.log('signup: ', { salt, hash });
     // const isMatch = await bcrypt.compare(password, hash);
 
     // create user
@@ -41,8 +40,6 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException('email not found');
     }
-
-    console.log('signin', { users: user });
 
     // hash password
     const isMatch = await bcrypt.compare(password, user.pwd);
