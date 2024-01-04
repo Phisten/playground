@@ -5,30 +5,6 @@ import (
 )
 
 func Test_s235(t *testing.T) {
-	// type Pair struct {
-	// 	got      int
-	// 	expected int
-	// 	note     string
-	// }
-
-	// Func := lowestCommonAncestor
-	// paris := []Pair{
-	// 	// leetcode.ArrayToTreeNode([]interface{}{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5})
-	// 	// {Func(, 2, 8), 6, ""},
-	// }
-
-	// for i, v := range paris {
-	// 	if !reflect.DeepEqual(v.expected, v.got) {
-	// 		f := "i:%v Expected %v, but got %v, note:%v"
-	// 		t.Errorf(f, i, v.expected, v.got, v.note)
-	// 	}
-	// }
-}
-
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
 }
 
 // TODO: 其實只要檢測pq是否在全左或全右, 否則就是答案
