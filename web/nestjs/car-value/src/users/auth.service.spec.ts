@@ -8,13 +8,24 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 describe('AuthService', () => {
   let service: AuthService;
   let fakeUsersService: Partial<UsersService>;
+  const users: User[] = [];
 
   beforeEach(async () => {
     // create a fake copy of the user service
     fakeUsersService = {
-      createUser: (user: CreateUserDTO) =>
-        Promise.resolve({ id: 1, email: user.email, pwd: user.pwd } as User),
-      find: () => Promise.resolve([]),
+      find: (email: string) => {
+        const filtered = users.filter((user) => user.email == email);
+        return Promise.resolve(filtered);
+      },
+      createUser: (user: CreateUserDTO) => {
+        const newUser = {
+          id: Math.floor(Math.random() * 99999),
+          email: user.email,
+          pwd: user.pwd,
+        } as User;
+        users.push(newUser);
+        return Promise.resolve(newUser);
+      },
     };
 
     const module = await Test.createTestingModule({
@@ -68,16 +79,7 @@ describe('AuthService', () => {
   });
 
   it('return a user if correct password is provided', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        {
-          id: '1',
-          email: 'asd',
-          pwd: '$2b$10$WJKKmcmu6gRvBlUti3W6lOdeng7dgXkvj/vsrcQDxVhJSfo1uduZq',
-        } as unknown as User,
-      ]);
-
+    await service.signup('asd', 'asd');
     await expect(service.signin('asd', 'asd')).toBeDefined();
-    // await expect(service.signup('asd', 'asd')).toBeDefined();
   });
 });
