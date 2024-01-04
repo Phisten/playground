@@ -27,10 +27,12 @@ describe('UsersController', () => {
       // remove: () => {},
       // update: () => {},
     };
-    // fakeAuthService = {
-    //   signup: () => {},
-    //   signin: () => {},
-    // };
+    fakeAuthService = {
+      signup: (email: string, password: string) =>
+        Promise.resolve({ id: 1, email, password } as unknown as User),
+      signin: (email: string, password: string) =>
+        Promise.resolve({ id: 1, email, password } as unknown as User),
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -61,5 +63,21 @@ describe('UsersController', () => {
   it('findUser throws an error if user with given id is not found', async () => {
     fakeUsersService.findOne = () => null;
     await expect(controller.getUser(1)).rejects.toThrow(NotFoundException);
+  });
+
+  it('signin update session object and returns user', async () => {
+    const session = {
+      userId: undefined,
+    };
+    const user = await controller.signin(
+      {
+        email: 'asd@123',
+        pwd: 'asdf',
+      },
+      session,
+    );
+
+    expect(user.id).toEqual(1);
+    expect(session.userId).toEqual(1);
   });
 });

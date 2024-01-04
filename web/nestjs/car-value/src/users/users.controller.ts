@@ -34,13 +34,13 @@ export class UsersController {
     const user = await this.authService.signup(body.email, body.pwd);
     session.userId = user.id;
     console.log(user);
-    return !!user;
+    return user;
   }
   @Post('/signin')
   async signin(@Body() body: CreateUserDTO, @Session() session: any) {
     const user = await this.authService.signin(body.email, body.pwd);
     session.userId = user?.id;
-    return !!user;
+    return user;
   }
 
   @Get('/whoami')
