@@ -5,3 +5,4 @@ py/leetcode/__pycache__
 rust/target
 *.sqlite
 node_modules
+.vscode/PythonImportHelper-v2-Completion.json
