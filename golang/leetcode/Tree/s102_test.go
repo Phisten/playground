@@ -1,7 +1,5 @@
 package leetcode
 
-import "fmt"
-
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -10,51 +8,35 @@ import "fmt"
  *     Right *TreeNode
  * }
  */
-
 //
+type Node struct {
+	node  *TreeNode
+	level int
+}
 
-/*
-3
-9 6 8    2 5 7
-3
-9 2
-6 8  5 7
-*/
 func levelOrder(root *TreeNode) [][]int {
 	ans := [][]int{}
 	if root == nil {
 		return ans
 	}
 
-	arr := treeToArray(root)
-	fmt.Println(ans)
-	l := len(arr)
-	for i := 1; i <= l; i *= 2 {
-		curAns := []int{}
-		for j := i / 2; j < i; j++ {
-			if arr[j] != nil {
-				curAns = append(curAns, arr[j].(int))
+	ans = append(ans, []int{})
+	queue := []Node{{root, 0}}
+	for len(queue) > 0 {
+		cur := queue[0]
+		queue = queue[1:]
+		if cur.node != nil {
+			if cur.level == len(ans) {
+				ans = append(ans, []int{})
 			}
+			ans[cur.level] = append(ans[cur.level], cur.node.Val)
+
+			queue = append(queue,
+				Node{node: cur.node.Left, level: cur.level + 1},
+				Node{node: cur.node.Right, level: cur.level + 1},
+			)
 		}
-		ans = append(ans, curAns)
 	}
-
-	return ans
-}
-
-func treeToArray(root *TreeNode) []interface{} {
-	ans := []interface{}{}
-	if root == nil {
-		ans = append(ans, nil)
-		return ans
-	}
-
-	ans = append(ans, root.Val)
-
-	left := treeToArray(root.Left)
-	ans = append(ans, left...)
-	right := treeToArray(root.Right)
-	ans = append(ans, right...)
 
 	return ans
 }
