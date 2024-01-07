@@ -49,8 +49,8 @@
 ## strapi (nodejs headless cms)
 
 ## go
-- leetcode
-- ![image](https://github.com/Phisten/playground/assets/1415118/28a5c20f-6753-46ba-a474-622ad94a0de5)
+- leetcode 
+<img src='https://github.com/Phisten/playground/assets/1415118/28a5c20f-6753-46ba-a474-622ad94a0de5' width='1000'>
 
 
 
