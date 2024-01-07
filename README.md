@@ -42,12 +42,16 @@
 ---
 
 ## Nestjs (nodejs)
+![image](https://github.com/Phisten/playground/assets/1415118/a02593d3-de3b-408e-8b82-d373316ee6e3)
+
 
 - course
 ## strapi (nodejs headless cms)
 
 ## go
 - leetcode
+- ![image](https://github.com/Phisten/playground/assets/1415118/28a5c20f-6753-46ba-a474-622ad94a0de5)
+
 
 
 ## python
