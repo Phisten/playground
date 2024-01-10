@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_c2970(t *testing.T) {
+func Test_c2972(t *testing.T) {
 	type Pair struct {
 		got      int
 		expected int
