@@ -21,9 +21,5 @@ func minDepth(root *TreeNode) int {
 		minLvSide = min(minLvSide, minDepth(root.Right))
 	}
 
-	if minLvSide < 100001 {
-		return 1 + minLvSide
-	} else {
-		return 1
-	}
+	return 1 + minLvSide%100001
 }
