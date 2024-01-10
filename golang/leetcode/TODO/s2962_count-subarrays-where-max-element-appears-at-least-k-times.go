@@ -15,22 +15,26 @@ func countSubarrays(nums []int, k int) int64 {
 		}
 	}
 
-	window := map[int]int{}
+	valid := 0
 	ans := int64(0)
 
 	for right, left := 0, 0; right < length; right++ {
 		cur := nums[right]
 
-		window[cur]++
-		if window[maxNum] >= k {
+		if cur == maxNum {
+			valid++
+		}
+		if valid >= k {
 			ans += int64(length - right)
 		}
 
-		for left <= right && window[maxNum] >= k {
+		for left <= right && valid >= k {
 			cur = nums[left]
-			window[cur]--
 
-			if window[maxNum] >= k {
+			if cur == maxNum {
+				valid--
+			}
+			if valid >= k {
 				ans += int64(length - right)
 			}
 
