@@ -21,7 +21,7 @@ BST中序走訪就是遞增序
 */
 
 func recoverTree(root *TreeNode) {
-	var prevNode, incorrect1, incorrect2 *TreeNode
+	var prevNode, leftErr, rightErr *TreeNode
 
 	var recursion func(cur *TreeNode)
 	recursion = func(cur *TreeNode) {
@@ -31,15 +31,11 @@ func recoverTree(root *TreeNode) {
 
 		recursion(cur.Left)
 
-		if prevNode != nil {
-			if prevNode.Val > cur.Val {
-				if incorrect1 == nil {
-					incorrect1 = prevNode
-				}
-				if incorrect1 != nil {
-					incorrect2 = cur
-				}
+		if prevNode != nil && prevNode.Val > cur.Val {
+			if leftErr == nil {
+				leftErr = prevNode
 			}
+			rightErr = cur
 		}
 		prevNode = cur
 
@@ -47,5 +43,5 @@ func recoverTree(root *TreeNode) {
 	}
 
 	recursion(root)
-	incorrect1.Val, incorrect2.Val = incorrect2.Val, incorrect1.Val
+	leftErr.Val, rightErr.Val = rightErr.Val, leftErr.Val
 }
