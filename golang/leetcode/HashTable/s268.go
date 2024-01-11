@@ -1,3 +1,5 @@
+package leetcode
+
 func missingNumber(nums []int) int {
 	l := len(nums)
 	ht := make(map[int]bool, l)

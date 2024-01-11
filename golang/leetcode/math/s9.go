@@ -1,3 +1,5 @@
+package leetcode
+
 func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
