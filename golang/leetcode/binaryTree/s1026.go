@@ -9,13 +9,13 @@ func maxAncestorDiff(root *TreeNode) int {
 
 		if node.Left != nil {
 			leftMin, leftMax := dfs(node.Left)
-			minVal = min(minVal, node.Left.Val, leftMin)
-			maxVal = max(maxVal, node.Left.Val, leftMax)
+			minVal = min(minVal, leftMin)
+			maxVal = max(maxVal, leftMax)
 		}
 		if node.Right != nil {
 			rightMin, rightMax := dfs(node.Right)
-			minVal = min(minVal, node.Right.Val, rightMin)
-			maxVal = max(maxVal, node.Right.Val, rightMax)
+			minVal = min(minVal, rightMin)
+			maxVal = max(maxVal, rightMax)
 		}
 
 		curCost := max(Abs(node.Val-maxVal), Abs(node.Val-minVal))
