@@ -8,7 +8,7 @@ func Test_s235(t *testing.T) {
 }
 
 // 其實只要檢測pq是否在全左或全右, 否則就是答案
-func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+func s235_lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	leftN, rightN := p, q
 	if p.Val > q.Val {
 		leftN, rightN = q, p

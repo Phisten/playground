@@ -8,7 +8,7 @@ package leetcode
  *     Right *TreeNode
  * }
  */
-func postorderTraversal(root *TreeNode) []int {
+func s145_postorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 	stack := []*TreeNode{}
 

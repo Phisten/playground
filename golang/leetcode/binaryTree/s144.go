@@ -9,7 +9,7 @@ package leetcode
  * }
  */
 
-func preorderTraversal(root *TreeNode) []int {
+func s144_preorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 
 	var recursion func(node *TreeNode)

@@ -8,7 +8,7 @@ package leetcode
  *     Right *TreeNode
  * }
  */
-func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+func s236_lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 
 	var dfs func(node *TreeNode) (*TreeNode, bool, bool)
 	dfs = func(node *TreeNode) (*TreeNode, bool, bool) {

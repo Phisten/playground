@@ -1,6 +1,6 @@
 package leetcode
 
-func inorderTraversal(root *TreeNode) []int {
+func _inorderTraversal(root *TreeNode) []int {
 	ans := []int{}
 	if root == nil {
 		return ans

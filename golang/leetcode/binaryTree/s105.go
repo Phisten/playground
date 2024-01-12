@@ -21,7 +21,8 @@ import "slices"
 pre:3,9,1,20,15,7
 in :1,9,3,15,20,7
 */
-func buildTree(preorder []int, inorder []int) *TreeNode {
+
+func s105_buildTree(preorder []int, inorder []int) *TreeNode {
 	length := len(preorder)
 	if length == 0 {
 		return nil
@@ -32,8 +33,8 @@ func buildTree(preorder []int, inorder []int) *TreeNode {
 
 	buildNode := &TreeNode{
 		Val:   preorder[0],
-		Left:  buildTree(preorder[1:leftLen], inorder[:midIdx]),
-		Right: buildTree(preorder[midIdx+1:], inorder[midIdx+1:]),
+		Left:  s105_buildTree(preorder[1:leftLen], inorder[:midIdx]),
+		Right: s105_buildTree(preorder[midIdx+1:], inorder[midIdx+1:]),
 	}
 
 	return buildNode
