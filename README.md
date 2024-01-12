@@ -9,26 +9,7 @@
 
 ### packages demo
 
-- nanostore
-- usehooks-ts
-- react-hook-form
-- rxjs
-- rxdb
-- lodash
-- tailwindcss
-- gsap : <https://greensock.com/react/>
-- axios
-- graphql
-- dayjs
-
 ### ui
-
-- custom
-- storybook
-- mui
-- antd
-- mezzanine-ui
-- headless-ui
 
 ## React
 - template: vite, react 18, typescript, tailwind CSS
@@ -38,10 +19,10 @@
 
 - AutoFarmShedMES
 
-
 ---
 
 ## Nestjs (nodejs)
+## car-value
 ![image](https://github.com/Phisten/playground/assets/1415118/a02593d3-de3b-408e-8b82-d373316ee6e3)
 
 
