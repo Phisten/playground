@@ -37,64 +37,53 @@ func Constructor() Codec {
 
 // Serializes a tree to a single string.
 func (this *Codec) serialize(root *TreeNode) string {
-	var ans strings.Builder
+	var sb strings.Builder
 
 	queue := []*TreeNode{root}
 	for i := 0; i < len(queue); i++ {
 		cur := queue[i]
 
 		if cur != nil {
-			ans.WriteString(strconv.Itoa(cur.Val))
+			sb.WriteString(strconv.Itoa(cur.Val))
+			sb.WriteString(",")
 			queue = append(queue, cur.Left, cur.Right)
 		} else {
-			ans.WriteString("null")
-		}
-		if i < len(queue) {
-			ans.WriteString(",")
+			sb.WriteString("null,")
 		}
 	}
 
-	return ans.String()
+	ans := sb.String()
+
+	return ans[:len(ans)-1]
 }
 
 // Deserializes your encoded data to tree.
 func (this *Codec) deserialize(data string) *TreeNode {
-	var root *TreeNode
+	if data == "" || data == "null" {
+		return nil
+	}
+
 	strNodes := strings.Split(data, ",")
-	nodes := []*TreeNode{}
+	num, _ := strconv.Atoi(strNodes[0])
+	nodes := []*TreeNode{{Val: num}}
 
-	if len(strNodes) > 0 {
-		num, nilRoot := strconv.Atoi(strNodes[0])
-		if nilRoot == nil {
-			root = &TreeNode{
-				Val:   num,
-				Left:  nil,
-				Right: nil,
-			}
-			nodes = append(nodes, root)
-		}
-	}
+	length := len(strNodes) - 1
+	for i := 0; i < length; i++ {
+		j := i / 2
+		isLeft := i%2 == 0
 
-	for i := 1; i < len(strNodes); i++ {
-		j := (i - 1) / 2
-		isLeft := i%2 == 1
-
-		numL, nilL := strconv.Atoi(strNodes[i])
-		if nilL == nil {
-			node := &TreeNode{
-				Val:   numL,
-				Left:  nil,
-				Right: nil,
-			}
+		num, err := strconv.Atoi(strNodes[i+1])
+		if err == nil {
+			cur := &TreeNode{Val: num}
 			if isLeft {
-				nodes[j].Left = node
+				nodes[j].Left = cur
 			} else {
-				nodes[j].Right = node
+				nodes[j].Right = cur
 			}
-			nodes = append(nodes, node)
+			nodes = append(nodes, cur)
 		}
 	}
-	return root
+	return nodes[0]
 }
 
 /**
