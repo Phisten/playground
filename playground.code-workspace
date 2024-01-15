@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "automation/playwright"
+		},
+		{
+			"path": "leetcode"
 		}
 	],
 	"settings": {
