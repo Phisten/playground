@@ -31,6 +31,17 @@
 		"[python]": {
 			"editor.defaultFormatter": "ms-python.black-formatter"
 		},
-		"python.formatting.provider": "none"
+		"python.formatting.provider": "none",
+		"files.associations": {
+			"vector": "cpp",
+			"iosfwd": "cpp",
+			"__hash_table": "cpp",
+			"unordered_map": "cpp",
+			"__bit_reference": "cpp",
+			"string": "cpp",
+			"string_view": "cpp",
+			"__split_buffer": "cpp",
+			"iostream": "cpp"
+		}
 	}
 }
