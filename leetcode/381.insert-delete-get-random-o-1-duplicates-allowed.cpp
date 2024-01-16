@@ -11,8 +11,18 @@
 using namespace std;
 class RandomizedCollection
 {
-    unordered_map<int, vector<int>> ht;
-    vector<int> vt;
+    struct VtVal
+    {
+        int val;
+        int idxInHt;
+    };
+    typedef vector<int> IdxInVt;
+
+    // key=Val, values=index in vt
+    unordered_map<int, IdxInVt>
+        ht;
+    // value pair = (Val, index in ht[Val])
+    vector<VtVal> vt;
 
 public:
     RandomizedCollection()
@@ -24,9 +34,7 @@ public:
         bool notfound = ht.count(val) == 0;
 
         ht[val].push_back(vt.size());
-        vt.push_back(val);
-
-        cout << "add, size=" << vt.size() << endl;
+        vt.push_back(VtVal{val : val, idxInHt : (int)(ht[val].size()) - 1});
 
         return notfound;
     }
@@ -36,36 +44,29 @@ public:
         auto find = ht.count(val) > 0;
         if (find)
         {
-            auto vtLastVal = vt.back();
-            auto removeIdx = ht[val].back();
+            auto vtLast = vt.back();
+            auto vtRemoveIdx = ht[val].back();
 
             ht[val].pop_back();
             if (ht[val].size() == 0)
                 ht.erase(val);
 
-            if (vtLastVal != val)
+            if (vtLast.val != val)
             {
-                auto vtLastInHt = ht[vtLastVal];
-                vtLastInHt[vtLastInHt.size() - 1] = removeIdx;
+                ht[vtLast.val][vtLast.idxInHt] = vtRemoveIdx;
             }
 
-            cout << "remove, val=" << val << ", moveLast:" << vtLastVal << " to:" << removeIdx << endl;
-
-            vt[removeIdx] = vtLastVal;
+            vt[vtRemoveIdx].val = vtLast.val;
+            vt[vtRemoveIdx].idxInHt = vtLast.idxInHt;
             vt.pop_back();
         }
-        for (const auto &value : vt)
-        {
-            cout << value << ",";
-        }
-        cout << endl;
 
         return find;
     }
 
     int getRandom()
     {
-        return vt[rand() % vt.size()];
+        return vt[rand() % vt.size()].val;
     }
 };
 
