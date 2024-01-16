@@ -6,3 +6,6 @@ rust/target
 *.sqlite
 node_modules
 .vscode/PythonImportHelper-v2-Completion.json
+cpp/main.dSYM
+cpp/output
+cpp/main
