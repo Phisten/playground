@@ -42,7 +42,9 @@
 			"string_view": "cpp",
 			"__split_buffer": "cpp",
 			"iostream": "cpp",
-			"cstddef": "cpp"
+			"cstddef": "cpp",
+			"limits": "cpp",
+			"algorithm": "cpp"
 		}
 	}
 }
