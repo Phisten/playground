@@ -12,17 +12,18 @@ class Solution:
         m_len = len(matrix)
         for i in range(1, m_len):
             for j in range(m_len):
-                minPath = matrix[i-1][j]
-                if j-1 >= 0:
-                    minPath = min(minPath, matrix[i - 1][j-1])
-                if j+1 < m_len:
-                    minPath = min(minPath, matrix[i - 1][j+1])
+                minPath = matrix[i - 1][j]
+                if j - 1 >= 0:
+                    minPath = min(minPath, matrix[i - 1][j - 1])
+                if j + 1 < m_len:
+                    minPath = min(minPath, matrix[i - 1][j + 1])
                 matrix[i][j] += minPath
 
-        min_val = float('inf')
+        min_val = float("inf")
         for i in range(m_len):
-            min_val = min(min_val, matrix[m_len-1][i])
+            min_val = min(min_val, matrix[m_len - 1][i])
 
         return min_val
-# @lc code=end
 
+
+# @lc code=end
