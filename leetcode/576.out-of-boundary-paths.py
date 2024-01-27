@@ -6,13 +6,13 @@
 
 # @lc code=start
 class Solution:
-    mod = 1000000007
+    mod = 10**9 + 7
 
     def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
 
         dp = [[[None] * (maxMove+1) for _ in range(n)] for _ in range(m)]
 
-        def dsf(remainingStep: int, x: int, y: int):
+        def dsf(remainingStep: int, x: int, y: int, dp):
             if not (0 <= x < m and 0 <= y < n):
                 return 1
             if remainingStep <= 0:
@@ -23,16 +23,16 @@ class Solution:
 
             remainingStep -= 1
 
-            res = dsf(remainingStep, x+1, y) % self.mod
-            res += dsf(remainingStep, x-1, y) % self.mod
-            res += dsf(remainingStep, x, y+1) % self.mod
-            res += dsf(remainingStep, x, y-1) % self.mod
+            res = dsf(remainingStep, x+1, y, dp) % self.mod
+            res += dsf(remainingStep, x-1, y, dp) % self.mod
+            res += dsf(remainingStep, x, y+1, dp) % self.mod
+            res += dsf(remainingStep, x, y-1, dp) % self.mod
 
             dp[x][y][remainingStep] = res
 
             return res
 
-        return dsf(maxMove, startRow, startColumn)
+        return dsf(maxMove, startRow, startColumn, dp)
 
 # @lc code=end
 
