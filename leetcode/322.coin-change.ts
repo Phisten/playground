@@ -11,28 +11,20 @@ function coinChange(coins: number[], amount: number): number {
   const dsf = (lastAmount: number) => {
     if (lastAmount === 0)
       return 0
-    else if (lastAmount < 0) {
-      return -1
-    }
-
-    if (dp[lastAmount] > 0) {
+    else if (dp[lastAmount] > 0)
       return dp[lastAmount];
-    }
 
-    let res = amount + 1
+    dp[lastAmount] = amount + 1
 
     coins.forEach((v: number, i: number) => {
-      const cur = dsf(lastAmount - v)
-      if (cur !== -1) {
-        res = Math.min(res, 1 + cur);
+      if (lastAmount - v >= 0) {
+        dp[lastAmount] = Math.min(dp[lastAmount], 1 + dsf(lastAmount - v));
       }
     })
 
-    dp[lastAmount] = res
-    return res
+    return dp[lastAmount]
   }
 
-  const count = dsf(amount)
-  return count > amount ? -1 : count
+  return dsf(amount) > amount ? -1 : dsf(amount)
 };
 // @lc code=end
