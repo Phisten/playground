@@ -17,17 +17,14 @@ function trap(height: number[]): number {
       water[i] = Math.max(water[i], minWall - height[i])
     }
 
-    if (height[left] < height[right]) {
-      left++
-    } else
-      right--
+    while (left < right && (height[left] <= minWall || height[right] <= minWall)) {
+      if (height[left] < height[right])
+        left++
+      else
+        right--
+    }
   }
 
-  let ans = 0;
-  water.forEach(element => {
-    ans += element;
-  });
-
-  return ans;
+  return water.reduce((pre, cur) => pre + cur);
 };
 // @lc code=end
