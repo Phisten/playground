@@ -13,8 +13,8 @@ function trap(height: number[]): number {
 
   while (left < right) {
     const minWall = Math.min(height[left], height[right])
-    for (let i = left; i <= right; i++) {
-      water[i] = Math.max(water[i], minWall - height[i])
+    for (let i = left + 1; i < right; i++) {
+      water[i] = minWall;
     }
 
     while (left < right && (height[left] <= minWall || height[right] <= minWall)) {
@@ -25,6 +25,6 @@ function trap(height: number[]): number {
     }
   }
 
-  return water.reduce((pre, cur) => pre + cur);
+  return water.reduce((pre, cur, i) => pre + Math.max(cur, cur - height[i]));
 };
 // @lc code=end
