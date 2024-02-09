@@ -18,33 +18,22 @@ class TreeNode {
 
 class BSTIterator {
     nodes: TreeNode[] = [];
-    idx: number = 0;
+    idx: number = -1;
 
     constructor(root: TreeNode) {
-        this.nodes = [];
-        this.idx = 0;
-
         let dsf = (node: TreeNode | null) => {
             if (!node) return;
 
-            if (this.nodes.length > 0 && this.nodes[this.idx].val > node.val) {
-                this.idx = this.nodes.length;
-            }
-
-            this.nodes.push(node)
             dsf(node.left);
+            this.nodes.push(node)
             dsf(node.right);
         }
         dsf(root);
-
-        this.idx--;
-
-        console.log('this.nodes', this.nodes);
     }
 
     next(): number {
         this.idx += 1;
-        const val = this.nodes[this.idx]?.val;
+        const val = this.nodes[this.idx].val;
         return val;
     }
 
