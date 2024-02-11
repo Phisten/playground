@@ -44,3 +44,5 @@ function cherryPickup(grid: number[][]): number {
   return dfs(0, rows - 1, 0);
 };
 // @lc code=end
+
+export default cherryPickup;
