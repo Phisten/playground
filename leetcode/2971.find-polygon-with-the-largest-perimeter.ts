@@ -6,18 +6,15 @@
 
 // @lc code=start
 function largestPerimeter(nums: number[]): number {
-  let ans = -1;
-
   nums.sort((a, b) => a - b);
 
-  nums.forEach((v, i) => {
-    let sum = 0;
-    for (let j = 0; j < i; j++)
-      sum += nums[j];
+  let ans = -1, sum = nums[0];
+  for (let i = 2; i < nums.length; i++) {
+    sum += nums[i - 1];
 
-    if (sum > 0 && v < sum && sum + v > ans)
-      ans = sum + v;
-  });
+    if (sum > 0 && nums[i] < sum && sum + nums[i] > ans)
+      ans = sum + nums[i];
+  }
 
   return ans;
 };
