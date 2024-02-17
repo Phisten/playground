@@ -18,7 +18,7 @@
 # 磚塊不夠扣時 輸出為idx - 1
 # opt:若梯子大於剩餘樓層數, return lastIdx
 
-import heapq
+from heapq import heappush, heappop
 from typing import List
 
 
@@ -37,10 +37,9 @@ class Solution:
 
             diff = v - heights[i - 1]
             if diff > 0:
-                ladder_options.append(diff)
+                heappush(ladder_options, diff)
                 if lastLadders == 0:
-                    heapq.heapify(ladder_options)
-                    min_value = heapq.heappop(ladder_options)
+                    min_value = heappop(ladder_options)
                     bricks -= min_value
                     if bricks < 0:
                         return i - 1
