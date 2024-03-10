@@ -29,13 +29,13 @@ function distanceK(root: TreeNode | null, target: TreeNode | null, k: number): n
   dfs(root, null);
 
   const ans = [];
-  const vised = {}
+  const visited = {}
   const recDist = (node, lastK) => {
-    if (!node || vised[node.val]) return;
+    if (!node || visited[node.val]) return;
     if (lastK === 0)
       ans.push(node.val);
 
-    vised[node.val] = true;
+    visited[node.val] = true;
 
     recDist(node.left, lastK - 1);
     recDist(node.right, lastK - 1);
