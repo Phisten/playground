@@ -10,7 +10,34 @@ class Solution
 public:
     int firstMissingPositive(vector<int> &nums)
     {
-        int hasMissing = false;
+        int n = nums.size();
+        nums.push_back(0);
+        int cap = nums.size();
+
+        // fixed range in 0 to 10^5
+        for (int i = 0; i < n; i++)
+            if (nums[i] < 0 || nums[i] > n)
+                nums[i] = 0;
+
+        // counting
+        for (int i = 0; i < n; i++)
+            if (nums[i] != 0)
+                nums[(nums[i] % cap)] += cap;
+
+        for (int i = 1; i <= n; i++)
+            if (nums[i] / cap == 0)
+                return i;
+
+        return cap;
+    }
+};
+// @lc code=end
+
+class Solution_nPlusTime_1Space
+{
+public:
+    int firstMissingPositive(vector<int> &nums)
+    {
         int n = nums.size();
 
         for (int i = 0; i < n; i++)
@@ -32,7 +59,6 @@ public:
         return n + 1;
     }
 };
-// @lc code=end
 
 class Solution_ht_nSpace
 {
