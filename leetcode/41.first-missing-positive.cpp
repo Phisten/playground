@@ -15,11 +15,11 @@ public:
 
         for (int i = 0; i < n; i++)
         {
-            while (nums[i] != i + 1 && nums[i] > 0 && nums[i] <= n)
+            while (
+                nums[i] > 0 && nums[i] <= n &&
+                nums[i] != nums[nums[i] - 1])
             {
                 int v = nums[i];
-                if (v == nums[v - 1])
-                    break;
                 nums[i] = nums[v - 1];
                 nums[v - 1] = v;
             }
