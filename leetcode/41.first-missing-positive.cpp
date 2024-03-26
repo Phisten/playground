@@ -15,29 +15,19 @@ public:
 
         for (int i = 0; i < n; i++)
         {
-            while (nums[i] != i + 1 && nums[i] != i + 1)
+            while (nums[i] != i + 1 && nums[i] > 0 && nums[i] <= n)
             {
                 int v = nums[i];
-                if (v < 1 || v > n)
-                {
+                if (v == nums[v - 1])
                     break;
-                }
-                else
-                {
-                    if (v == nums[v - 1])
-                        break;
-                    nums[i] = nums[v - 1];
-                    nums[v - 1] = v;
-                }
+                nums[i] = nums[v - 1];
+                nums[v - 1] = v;
             }
         }
 
         for (int i = 0; i < n; i++)
-        {
-            int v = nums[i];
-            if (v != i + 1)
+            if (nums[i] != i + 1)
                 return i + 1;
-        }
 
         return n + 1;
     }
