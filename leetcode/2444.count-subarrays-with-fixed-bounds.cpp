@@ -25,19 +25,15 @@ public:
     {
         int n = nums.size();
         long long ans = 0;
-        int out = 0;
-        int minHit = 0;
-        int maxHit = 0;
-        int lastMaxIdx = 0;
-        int lastMinIdx = 0;
+        int minHit = 0, maxHit = 0;
+        int lastMaxIdx, lastMinIdx = 0;
 
-        for (int i = 0, l = 0; i < n; i++)
+        for (int r = 0, l = 0; r < n; r++)
         {
-            int v = nums[i];
+            int v = nums[r];
             if (v > maxK || v < minK)
             {
-                out++;
-                l = i + 1;
+                l = r + 1;
                 minHit = 0;
                 maxHit = 0;
                 continue;
@@ -46,12 +42,12 @@ public:
             if (v == minK)
             {
                 minHit++;
-                lastMinIdx = i;
+                lastMinIdx = r;
             }
             if (v == maxK)
             {
                 maxHit++;
-                lastMaxIdx = i;
+                lastMaxIdx = r;
             }
             if (minHit > 0 && maxHit > 0)
                 ans += min(lastMaxIdx, lastMinIdx) - l + 1;
