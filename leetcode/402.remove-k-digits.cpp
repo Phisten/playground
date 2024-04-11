@@ -5,52 +5,49 @@
  */
 
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    string removeKdigits(string num, int k) {
+    string removeKdigits(string num, int k)
+    {
         int n = num.length();
-        stringstream ss;
-        cout << n << endl;
-        // cout << "k=" << k << "," << num << endl;
+        if (k == n)
+            return "0";
 
-        for (int i = 0; i < n && k > 0;) {
-            if (num[i] >= '0') {
-                int maxNumIdx = i;
-                int lastNumIdx = i;
-                for (int j = i + 1; j < n - k + 1; j++) {
-                    if (num[j] != '.') {
-                        if (num[lastNumIdx] > num[j]) {
-                            maxNumIdx = lastNumIdx;
-                            break;
-                        }
-                        lastNumIdx = j;
-                    }
+        string ans;
+        ans.push_back(num[0]);
 
-                    if (num[maxNumIdx] < num[j]) {
-                        maxNumIdx = j;
-                    }
-                }
-                num[maxNumIdx] = '.';
+        int need = n - k - 1;
+        // cout << "ans: " << ans << endl;
+
+        for (int i = 1; i < n; i++)
+        {
+            int v = num[i];
+
+            while (ans.length() > 0 && ans.back() > v && k > 0)
+            {
+                ans.pop_back();
+                need++;
                 k--;
+            }
 
-                // cout << "k=" << k << "," << num << endl;
-                if (maxNumIdx == i) i++;
-            } else i++;
+            if (ans.length() > 0 || v != '0')
+            {
+                ans.push_back(v);
+            }
+            need--;
+
+            // cout << "ans: " << ans << endl;
         }
 
+        if (need < 0)
+            for (int i = need; i < 0; i++)
+                if (ans.length() > 0)
+                    ans.pop_back();
+                else
+                    break;
 
-        // cout << "ans:" << num << endl;
-
-        bool hasHead = false;
-        for (int i = 0; i < n; i++)
-            if (num[i] > '.')
-                if (num[i] != '0' || hasHead) {
-                    ss << num[i];
-                    hasHead = true;
-                }
-
-        if (ss.str().length() == 0) return "0";
-        return ss.str();
+        return ans == "" ? "0" : ans;
     }
 };
 // @lc code=end
