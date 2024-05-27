@@ -15,10 +15,9 @@ public:
         
         int idx = 0;
         while (step > 0) {
-            if (idx == n - 1) return true;
-            step--;
-            step = max(step, nums[idx]);
-            if (step > 0) idx++;
+            if (idx >= n - 1) return true;
+            step = max(step-1, nums[idx]);
+            idx++;
         }
 
         return false;
