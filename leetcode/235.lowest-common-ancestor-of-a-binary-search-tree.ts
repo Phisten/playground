@@ -21,6 +21,21 @@
 
 function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
   if (root === null) return null;
+  const minPQ = Math.min(p.val, q.val);
+  const maxPQ = Math.max(p.val, q.val);
+
+  if (root.val <= maxPQ && root.val >= minPQ) return root;
+
+const left = lowestCommonAncestor(root.left, p, q);
+const right = lowestCommonAncestor(root.right, p, q);
+  return left ?? right ?? null;
+};
+
+// @lc code=end
+
+
+function lowestCommonAncestor_same236(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
+  if (root === null) return null;
   if (root.val === q.val || root.val === p.val) return root;
 
 const left = lowestCommonAncestor(root.left, p, q);
@@ -36,5 +51,3 @@ const right = lowestCommonAncestor(root.right, p, q);
       return root;
   }
 };
-// @lc code=end
-
