@@ -4,13 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "golang"
-		},
-		{
 			"path": "web/nestjs"
-		},
-		{
-			"path": "automation/playwright"
 		},
 		{
 			"path": "leetcode"
