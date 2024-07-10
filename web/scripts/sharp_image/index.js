@@ -34,7 +34,7 @@ imageFiles.forEach((file) => {
     path.parse(file).name + "." + "jpg"
   );
   sharp(inputPath)
-    // .resize({ width: 1020, height: 1020 }) // 设置压缩后的宽度，可根据需要调整
+    .resize({ width: 400, height: 400 }) // 设置压缩后的宽度，可根据需要调整
     .jpeg()
     .toFile(outputPath, (err, info) => {
       if (err) {
