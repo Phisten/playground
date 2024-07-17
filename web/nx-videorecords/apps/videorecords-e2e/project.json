@@ -1,0 +1,9 @@
+{
+  "name": "videorecords-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/videorecords-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["videorecords"],
+  "// targets": "to see all targets run: nx show project videorecords-e2e --web",
+  "targets": {}
+}

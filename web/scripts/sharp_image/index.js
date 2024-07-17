@@ -30,12 +30,13 @@ imageFiles.forEach((file) => {
   const outputPath = path.join(
     __dirname,
     outputFolder,
-    // file,
-    path.parse(file).name + "." + "jpg"
+    file
+    // path.parse(file).name + "." + "jpg"
   );
   sharp(inputPath)
-    .resize({ width: 400, height: 400 }) // 设置压缩后的宽度，可根据需要调整
-    .jpeg()
+    .resize({ width: 320 }) // 设置压缩后的宽度，可根据需要调整
+    // .resize({ width: 400, height: 400 })
+    // .jpeg()
     .toFile(outputPath, (err, info) => {
       if (err) {
         console.error(`Failed to compress ${file}: ${err}`);
