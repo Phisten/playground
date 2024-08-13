@@ -1,4 +1,4 @@
-import { MouseEventHandler, RefObject, useEffect, useRef } from 'react';
+import { MouseEventHandler, RefObject, useEffect, useRef } from "react";
 
 export const useDragScroll = (scrollContainer: RefObject<HTMLDivElement>) => {
   const hasMoveRef = useRef(false);
@@ -17,27 +17,43 @@ export const useDragScroll = (scrollContainer: RefObject<HTMLDivElement>) => {
     let scrollTop: number;
     let isDown: boolean;
 
-    const mouseIsDown = (e: MouseEvent) => {
+    const getXY = (e: MouseEvent | TouchEvent) => {
+      if (e instanceof MouseEvent) {
+        return { eventX: e.pageX, eventY: e.pageY, touches: 1 };
+      } else if (e instanceof TouchEvent) {
+        return {
+          eventX: e.touches[0].pageX,
+          eventY: e.touches[0].pageY,
+          touches: e.touches.length,
+        };
+      }
+      return { eventX: -1, eventY: -1, touches: 0 };
+    };
+
+    const mouseIsDown = (e: MouseEvent | TouchEvent) => {
+      const { eventX, eventY, touches } = getXY(e);
       hasMoveRef.current = false;
-      if (container) {
+      if (container && touches === 1) {
         isDown = true;
-        startY = e.pageY - container.offsetTop;
-        startX = e.pageX - container.offsetLeft;
+        startY = eventY - container.offsetTop;
+        startX = eventX - container.offsetLeft;
         scrollLeft = container.scrollLeft;
         scrollTop = container.scrollTop;
       }
     };
-    const mouseUp = (e: MouseEvent) => {
+    const mouseUp = (e: MouseEvent | TouchEvent) => {
       isDown = false;
     };
-    const mouseMove = (e: MouseEvent) => {
+    const mouseMove = (e: MouseEvent | TouchEvent) => {
       if (isDown) {
         e.preventDefault();
+        const { eventX, eventY } = getXY(e);
+
         if (container) {
-          const y = e.pageY - container.offsetTop;
+          const y = eventY - container.offsetTop;
           const walkY = y - startY;
           container.scrollTop = scrollTop - walkY;
-          const x = e.pageX - container.offsetLeft;
+          const x = eventX - container.offsetLeft;
           const walkX = x - startX;
           container.scrollLeft = scrollLeft - walkX;
 
@@ -50,18 +66,24 @@ export const useDragScroll = (scrollContainer: RefObject<HTMLDivElement>) => {
     };
 
     if (container) {
-      container.addEventListener('mousedown', (e) => mouseIsDown(e));
-      container.addEventListener('mouseup', (e) => mouseUp(e));
-      container.addEventListener('mouseleave', (e) => mouseUp(e));
-      container.addEventListener('mousemove', (e) => mouseMove(e));
+      container.addEventListener("mousedown", (e) => mouseIsDown(e));
+      container.addEventListener("mouseup", (e) => mouseUp(e));
+      container.addEventListener("mouseleave", (e) => mouseUp(e));
+      container.addEventListener("mousemove", (e) => mouseMove(e));
+      container.addEventListener("touchstart", (e) => mouseIsDown(e));
+      container.addEventListener("touchend", (e) => mouseUp(e));
+      container.addEventListener("touchmove", (e) => mouseMove(e));
     }
 
     return () => {
       if (container) {
-        container.removeEventListener('mousedown', (e) => mouseIsDown(e));
-        container.removeEventListener('mouseup', (e) => mouseUp(e));
-        container.removeEventListener('mouseleave', (e) => mouseUp(e));
-        container.removeEventListener('mousemove', (e) => mouseMove(e));
+        container.removeEventListener("mousedown", (e) => mouseIsDown(e));
+        container.removeEventListener("mouseup", (e) => mouseUp(e));
+        container.removeEventListener("mouseleave", (e) => mouseUp(e));
+        container.removeEventListener("mousemove", (e) => mouseMove(e));
+        container.removeEventListener("touchstart", (e) => mouseIsDown(e));
+        container.removeEventListener("touchend", (e) => mouseUp(e));
+        container.removeEventListener("touchmove", (e) => mouseMove(e));
       }
     };
   });
