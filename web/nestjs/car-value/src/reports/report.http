@@ -1,0 +1,14 @@
+@host = http://localhost:3500
+
+POST {{host}}/reports
+content-type: application/json
+
+{
+  "make": "Toyota",
+  "model": "Corolla",
+  "year": 2019,
+  "price": 19032,
+  "mileage": 20000,
+  "lng": 34.397,
+  "lat": 32.690
+}
